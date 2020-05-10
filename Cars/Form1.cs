@@ -16,6 +16,7 @@ namespace Cars
         public Form1()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
         }
         static public XDocument doc;
         static string fileName;

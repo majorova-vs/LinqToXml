@@ -24,6 +24,7 @@ namespace Cars
         {
             f = form1;
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void button1_Click(object sender, EventArgs e)

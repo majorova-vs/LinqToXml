@@ -227,6 +227,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "Form3";
             this.Text = "Изменение данных";
             this.ResumeLayout(false);
