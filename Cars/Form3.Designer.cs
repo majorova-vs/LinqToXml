@@ -45,8 +45,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox8
@@ -187,6 +187,13 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(300, 35);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(100, 22);
+            this.textBox9.TabIndex = 35;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -195,13 +202,6 @@
             this.label9.Size = new System.Drawing.Size(21, 17);
             this.label9.TabIndex = 34;
             this.label9.Text = "ID";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(300, 35);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 22);
-            this.textBox9.TabIndex = 35;
             // 
             // Form3
             // 
@@ -254,7 +254,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label9;
         public System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label9;
     }
 }

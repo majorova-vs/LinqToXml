@@ -29,9 +29,7 @@ namespace Cars
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Filter();
             this.Close();
-
         }
 
         public void Filter()
@@ -60,7 +58,7 @@ namespace Cars
             //    textBox1.Text = textBox1.Text + '\r' + '\n';
             //}
         }
-
+        
         private void label1_Click(object sender, EventArgs e)
         {
 

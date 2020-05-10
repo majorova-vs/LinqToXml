@@ -20,7 +20,24 @@ namespace Cars
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close();  
+        }
+
+        public bool CheckInputValues(string v1)
+        {
+            bool flag = false;
+            double result;
+            double res;
+            if (double.TryParse(v1, out res) || v1.Length == 0)
+            {
+                flag = true;
+            }
+            else
+            {
+                flag = false;
+                result = 0;
+            }
+            return flag;
         }
     }
 }

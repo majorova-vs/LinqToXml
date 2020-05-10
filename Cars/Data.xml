@@ -30,14 +30,16 @@
     <ResidueBenzine>2000</ResidueBenzine>
     <OilVolume>950</OilVolume>
   </Car>
-  <Car Id="107">
-    <LastName>Brad</LastName>
-    <BrandCode>333</BrandCode>
+  <Car Id="104">
+    <LastName>Smith</LastName>
+    <BrandCode>666</BrandCode>
     <BrandName>BMW</BrandName>
-    <Benzine>C-512</Benzine>
-    <Power>1000</Power>
-    <BenzineMaxVolume>400</BenzineMaxVolume>
-    <ResidueBenzine>200</ResidueBenzine>
-    <OilVolume>100</OilVolume>
+    <Benzine>A-95</Benzine>
+    <Power>900</Power>
+    <BenzineMaxVolume>1500</BenzineMaxVolume>
+    <ResidueBenzine>1000</ResidueBenzine>
+    <OilVolume>900</OilVolume>
+    <PriceBenz>200</PriceBenz>
+    <PriceOil>200</PriceOil>
   </Car>
 </Cars>

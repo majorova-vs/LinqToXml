@@ -150,7 +150,7 @@ namespace Cars
                 IEnumerable<XElement> cars = from c in Form1.doc.Root.Elements("Car")
                                              select c;
                 WriteOnForm(cars, textBox2);
-                textBox2.Clear();
+                //textBox2.Clear();
             }
             catch (NullReferenceException ex)
             {
@@ -169,15 +169,15 @@ namespace Cars
 
             IEnumerable<XElement> cars = doc.Root.Descendants("Car").Where(
                                          t => 
-                                         t.Attribute("Id").Value == ((f.textBox9.TextLength == 0) ? t.Attribute("Id").Value : f.textBox9.Text) &&
-                                         t.Element("LastName").Value == ((f.textBox1.TextLength == 0) ? t.Element("LastName").Value : f.textBox1.Text) &&
-                                         t.Element("BrandCode").Value == ((f.textBox2.TextLength == 0) ? t.Element("BrandCode").Value : f.textBox2.Text) &&
-                                         t.Element("BrandName").Value == ((f.textBox3.TextLength == 0) ? t.Element("BrandName").Value : f.textBox3.Text) &&
-                                         t.Element("Benzine").Value == ((f.textBox4.TextLength == 0) ? t.Element("Benzine").Value : f.textBox4.Text) &&
-                                         t.Element("Power").Value == ((f.textBox5.TextLength == 0) ? t.Element("Power").Value : f.textBox5.Text) &&
-                                         t.Element("BenzineMaxVolume").Value == ((f.textBox6.TextLength == 0) ? t.Element("BenzineMaxVolume").Value : f.textBox6.Text) &&
-                                         t.Element("ResidueBenzine").Value == ((f.textBox7.TextLength == 0) ? t.Element("ResidueBenzine").Value : f.textBox7.Text) &&
-                                         t.Element("OilVolume").Value == ((f.textBox8.TextLength == 0) ? t.Element("OilVolume").Value : f.textBox8.Text)
+                                         t.Attribute("Id").Value == f.textBox9.Text 
+                                         //t.Element("LastName").Value == ((f.textBox1.TextLength == 0) ? t.Element("LastName").Value : f.textBox1.Text) &&
+                                         //t.Element("BrandCode").Value == ((f.textBox2.TextLength == 0) ? t.Element("BrandCode").Value : f.textBox2.Text) &&
+                                         //t.Element("BrandName").Value == ((f.textBox3.TextLength == 0) ? t.Element("BrandName").Value : f.textBox3.Text) &&
+                                         //t.Element("Benzine").Value == ((f.textBox4.TextLength == 0) ? t.Element("Benzine").Value : f.textBox4.Text) &&
+                                         //t.Element("Power").Value == ((f.textBox5.TextLength == 0) ? t.Element("Power").Value : f.textBox5.Text) &&
+                                         //t.Element("BenzineMaxVolume").Value == ((f.textBox6.TextLength == 0) ? t.Element("BenzineMaxVolume").Value : f.textBox6.Text) &&
+                                         //t.Element("ResidueBenzine").Value == ((f.textBox7.TextLength == 0) ? t.Element("ResidueBenzine").Value : f.textBox7.Text) &&
+                                         //t.Element("OilVolume").Value == ((f.textBox8.TextLength == 0) ? t.Element("OilVolume").Value : f.textBox8.Text)
                                             );
             //Удаляем выбранные элементы
             cars.Remove();
@@ -217,18 +217,28 @@ namespace Cars
         {
             //Вычисляем максимальный ИД автомобиля в базе данных
             int maxId = doc.Root.Elements("Car").Max(t => Int32.Parse(t.Attribute("Id").Value));
-
-            XElement car = new XElement("Car", new XAttribute("Id", ++maxId),
-                        new XElement("LastName", f.textBox1.Text),
-                        new XElement("BrandCode", f.textBox2.Text),
-                        new XElement("BrandName", f.textBox3.Text),
-                        new XElement("Benzine", f.textBox4.Text),
-                        new XElement("Power", f.textBox5.Text),
-                        new XElement("BenzineMaxVolume", f.textBox6.Text),
-                        new XElement("ResidueBenzine", f.textBox7.Text),
-                        new XElement("OilVolume", f.textBox8.Text));
-            doc.Root.Add(car);
-            doc.Save(fileName);
+            if (CheckInputValues(f.textBox2.Text, f.textBox5.Text, f.textBox6.Text, f.textBox7.Text, f.textBox8.Text) 
+                && CheckInputValues2(f.textBox1.Text, f.textBox3.Text, f.textBox4.Text)
+                && CheckInputValues3(f.textBox6.Text, f.textBox7.Text))
+            {
+                XElement car = new XElement("Car", new XAttribute("Id", ++maxId),
+                            new XElement("LastName", f.textBox1.Text),
+                            new XElement("BrandCode", f.textBox2.Text),
+                            new XElement("BrandName", f.textBox3.Text),
+                            new XElement("Benzine", f.textBox4.Text),
+                            new XElement("Power", f.textBox5.Text),
+                            new XElement("BenzineMaxVolume", f.textBox6.Text),
+                            new XElement("ResidueBenzine", f.textBox7.Text),
+                            new XElement("OilVolume", f.textBox8.Text),
+                            new XElement("PriceBenz", 200),
+                            new XElement("PriceOil", 200));
+                doc.Root.Add(car);
+                doc.Save(fileName);
+            }
+            //else
+            //{
+            //    MessageBox.Show("BrandCode должен быть числом");
+            //}
         }
         //Сохранение файла
         private void button1_Click(object sender, EventArgs e)
@@ -261,6 +271,163 @@ namespace Cars
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        //Проверка на то, что value Является числом
+        public bool CheckInputValues(string v1, string v2, string v3, string v4, string v5)
+        {
+            bool flag = false;
+            double result;
+            double res = 0;
+            if (double.TryParse(v1, out res) && v1.Length != 0)
+            {
+                flag = true;
+            }
+            else
+            {
+                if (v1.Length == 0)
+                {
+                    flag = false;
+                    MessageBox.Show("Введите BrandCode");
+                    return flag;
+                }
+                else
+                {
+                    flag = false;
+                    MessageBox.Show("BrandCode должен быть числом");
+                    return flag;
+                }
+            }
+            if (double.TryParse(v2, out res) && v2.Length != 0)
+            {
+                flag = true;
+            }
+            else
+            {
+                if (v2.Length == 0)
+                {
+                    flag = false;
+                    MessageBox.Show("Введите Power");
+                    return flag;
+                }
+                else
+                {
+                    flag = false;
+                    MessageBox.Show("Power должен быть числом");
+                    return flag;
+                }
+            }
+            if (double.TryParse(v3, out res) && v3.Length != 0)
+            {
+                flag = true;
+            }
+            else
+            {
+                if (v3.Length == 0)
+                {
+                    flag = false;
+                    MessageBox.Show("Введите BenzineMaxVolume");
+                    return flag;
+                }
+                else
+                {
+                    flag = false;
+                    MessageBox.Show("BenzineMaxVolume должен быть числом");
+                    return flag;
+                }
+            }
+            if (double.TryParse(v4, out res) && v4.Length != 0)
+            {
+                flag = true;
+            }
+            else
+            {
+                if (v4.Length == 0)
+                {
+                    flag = false;
+                    MessageBox.Show("Введите ResidueBenzine");
+                    return flag;
+                }
+                else
+                {
+                    flag = false;
+                    MessageBox.Show("ResidueBenzine должен быть числом");
+                    return flag;
+                }
+            }
+            if (double.TryParse(v5, out res) && v5.Length != 0)
+            {
+                flag = true;
+            }
+            else
+            {
+                if (v5.Length == 0)
+                {
+                    flag = false;
+                    MessageBox.Show("Введите OilVolume");
+                    return flag;
+                }
+                else
+                {
+                    flag = false;
+                    MessageBox.Show("OilVolume должен быть числом");
+                    return flag;
+                }
+            }
+            return flag;
+        }
+        //Проверка на то, что value является непустой строкой, lastname содержит только буквы
+        public bool CheckInputValues2(string v1, string v2, string v3)
+        {
+            bool flag = false;
+            double result;
+            double res = 0;
+            if ((v1.Any(c => char.IsLetter(c))) && v1.Length != 0)
+            {
+                flag = true;
+            }
+            else
+            {
+                if (v1.Length == 0)
+                {
+                    flag = false;
+                    MessageBox.Show("Введите LastName");
+                    return flag;
+                }
+                else
+                {
+                    flag = false;
+                    MessageBox.Show("LastName содержит недопустимые символы");
+                    return flag;
+                }
+            }
+            if (v2.Length == 0)
+            {
+                flag = false;
+                MessageBox.Show("Введите BrandName");
+                return flag;
+            }
+            if (v3.Length == 0)
+            {
+                flag = false;
+                MessageBox.Show("Введите Benzine");
+                return flag;
+            }
+            return flag;
+        }
+
+        //Проверка на то, что остаток бензина меньше общего объёма бензина.
+        public bool CheckInputValues3(string v1, string v2)
+        {
+            if (Convert.ToDouble(v1) >= Convert.ToDouble(v2))
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Остаток бензина не может быть больше максимального объема бака");
+                return false;
             }
         }
     }
