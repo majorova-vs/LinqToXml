@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Cars>
-  <Car Id="101">
-    <LastName>Ivanov</LastName>
-    <BrandCode>555</BrandCode>
-    <BrandName>BMW</BrandName>
-    <Benzine>A-72</Benzine>
-    <Power>700</Power>
-    <BenzineMaxVolume>2000</BenzineMaxVolume>
-    <ResidueBenzine>1500</ResidueBenzine>
-    <OilVolume>1000</OilVolume>
-  </Car>
   <Car Id="102">
     <LastName>Petrova</LastName>
     <BrandCode>666</BrandCode>
@@ -29,17 +19,5 @@
     <BenzineMaxVolume>2000</BenzineMaxVolume>
     <ResidueBenzine>2000</ResidueBenzine>
     <OilVolume>950</OilVolume>
-  </Car>
-  <Car Id="104">
-    <LastName>Smith</LastName>
-    <BrandCode>666</BrandCode>
-    <BrandName>BMW</BrandName>
-    <Benzine>A-95</Benzine>
-    <Power>900</Power>
-    <BenzineMaxVolume>1500</BenzineMaxVolume>
-    <ResidueBenzine>1000</ResidueBenzine>
-    <OilVolume>900</OilVolume>
-    <PriceBenz>200</PriceBenz>
-    <PriceOil>200</PriceOil>
   </Car>
 </Cars>

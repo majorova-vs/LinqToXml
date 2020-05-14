@@ -196,7 +196,9 @@ namespace Cars
             addValueForm.Owner = this;
             try
             {
-                AddValue(addValueForm);
+                //AddValue(addValueForm);
+                AddValue(addValueForm.textBox1.Text, addValueForm.textBox2.Text, addValueForm.textBox3.Text, addValueForm.textBox4.Text, addValueForm.textBox5.Text, addValueForm.textBox6.Text,
+                    addValueForm.textBox7.Text, addValueForm.textBox8.Text);
                 IEnumerable<XElement> cars = from c in Form1.doc.Root.Elements("Car")
                                              select c;
                 textBox2.Clear();
@@ -239,6 +241,30 @@ namespace Cars
             //{
             //    MessageBox.Show("BrandCode должен быть числом");
             //}
+        }
+
+        public void AddValue(string lname, string brcode, string brname, string benz, string pow, string benmax, string benzres, string oil)
+        {
+            //Вычисляем максимальный ИД автомобиля в базе данных
+            int maxId = doc.Root.Elements("Car").Max(t => Int32.Parse(t.Attribute("Id").Value));
+            if (CheckInputValues(brcode, pow, benmax, benzres, oil)
+                && CheckInputValues2(lname, brname, benz)
+                && CheckInputValues3(benmax, benzres))
+            {
+                XElement car = new XElement("Car", new XAttribute("Id", ++maxId),
+                            new XElement("LastName", lname),
+                            new XElement("BrandCode", brcode),
+                            new XElement("BrandName", brname),
+                            new XElement("Benzine", benz),
+                            new XElement("Power", pow),
+                            new XElement("BenzineMaxVolume", benmax),
+                            new XElement("ResidueBenzine", benzres),
+                            new XElement("OilVolume", oil),
+                            new XElement("PriceBenz", 200),
+                            new XElement("PriceOil", 200));
+                doc.Root.Add(car);
+                doc.Save(fileName);
+            }
         }
         //Сохранение файла
         private void button1_Click(object sender, EventArgs e)
